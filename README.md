@@ -6,4 +6,3 @@ IMDB users submit lists, and if logged on, these lists can be downloaded as CSV 
     * Limited to N = 10,000, so it changes from year to year and is not  *really* all movies
 
 * Oscar info: `rvest`ed from http://www.imdb.com/event/ev0000003/2015
-
