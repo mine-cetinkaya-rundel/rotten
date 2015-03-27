@@ -3,8 +3,12 @@ Type: Package
 Title: What the Package Does (Title Case)
 Version: 0.1
 Date: 2015-03-27
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
+Author: Mine Cetinkaya-Rundel [aut, cre],
+    Andee Kaplan [aut]
+Maintainer: Mine Cetinkaya-Rundel <mine@stat.duke.edu>
 Description: More about what it does (maybe more than one line)
-License: What license is it under?
+License: GPL (>= 2)
 LazyData: TRUE
+Depends: R (>= 3.1.0), rjson, stringr, dplyr, rvest, stringr
+Suggests: ggplot2
+URL: http://www.r-project.org, https://github.com/mine-cetinkaya-rundel/rotten
