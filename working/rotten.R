@@ -3,15 +3,12 @@ library(stringr)
 
 # population to sample
 all = read.csv("working/all.csv", stringsAsFactors = FALSE)
-pre_2014 = all[all$Year < 2014,]
-set.seed(1109)
-rows_to_samp = sample(1:nrow(pre_2014), size = 600)
-samp = pre_2014[rows_to_samp,]
-samp$id = str_replace(samp$const,"^tt","")
-write.csv(samp, file = "movies_raw.csv", row.names = FALSE)
+all$id = str_replace(samp$const,"^tt","")
+
+
 
 # download json files
-setwd("~/Desktop/Teaching/Sta101_F14/Project/Project 2/data/json")
+setwd("/json")
 # key = [key]
 # for(i in 1:nrow(samp)){
 #   url1 = "http://api.rottentomatoes.com/api/public/v1.0/movie_alias.json?id="
