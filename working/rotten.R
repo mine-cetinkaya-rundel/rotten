@@ -4,10 +4,20 @@ library(dplyr)
 
 # data to match downloaded from imdb
 all = read.csv("working/all.csv", stringsAsFactors = FALSE)
+<<<<<<< HEAD
+all$id = str_replace(samp$const,"^tt","")
+
+
+
+# download json files
+setwd("/json")
+# key = [key]
+=======
 all$id = str_replace(all$const,"^tt","")
 
 
 # download json files
+>>>>>>> 5bb8d22ab8fa1370d56bf906536e3d427878ee74
 # for(i in 1:nrow(samp)){
 #   url1 = "http://api.rottentomatoes.com/api/public/v1.0/movie_alias.json?id="
 #   id = samp$id[i]
