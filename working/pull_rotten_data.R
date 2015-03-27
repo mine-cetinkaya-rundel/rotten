@@ -15,7 +15,5 @@ pull_rotten_data <- function(key, match_data, batch_id) {
     mutate(i = batch_id) %>%
     mutate(filename = paste0("json/", i,"_", id, ".json")) %>%
     rowwise() %>%
-    do(success = download.file(url = .$url, destfile = .$filename)) %>%
-    do(sleep = Sys.sleep(1))
-  
+    do(success = download.file(url = .$url, destfile = .$filename) >%% Sys.sleep(1))
 }
