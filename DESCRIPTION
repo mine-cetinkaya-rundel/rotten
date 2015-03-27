@@ -7,8 +7,16 @@ Author: Mine Cetinkaya-Rundel [aut, cre],
     Andee Kaplan [aut]
 Maintainer: Mine Cetinkaya-Rundel <mine@stat.duke.edu>
 Description: More about what it does (maybe more than one line)
-License: GPL (>= 2)
+License: MIT + file LICENSE
 LazyData: TRUE
-Depends: R (>= 3.1.0), rjson, stringr, dplyr, rvest, stringr
+Depends: 
+    R (>= 3.1.0)
+Imports:
+    rjson,
+    dplyr (>= 0.2),
+    stringr,
+    rvest
 Suggests: ggplot2
-URL: http://www.r-project.org, https://github.com/mine-cetinkaya-rundel/rotten
+URL: https://github.com/mine-cetinkaya-rundel/rotten
+BugReports: https://github.com/mine-cetinkaya-rundel/rotten
+VignetteBuilder: knitr
