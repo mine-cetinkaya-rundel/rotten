@@ -1,31 +1,29 @@
-library(rjson)
-library(stringr)
-library(dplyr)
-library(rvest)
-library(tidyr)
-
-# data to match downloaded from imdb
-all = read.csv("all.csv", stringsAsFactors = FALSE)
-all$id = str_replace(all$const,"^tt","")
-
-
 #' Pull Rotten Tomatoes data from the API corresponding to movie ids from IMDB
 #' 
 #' @param ids vectors containing movie id from IMDB for which Rotten Tomatoes data is wanted
 #' @param key Rotten Tomatoes API key as a string
-#' @param ... further parameters passed to \code{download.file}, see 
-#' @seealso \code{\link{download.file}} for further options
+#' 
+#' @return a data frame of values from Rotten Tomatoes, one row for each movie
+#' 
+#' @importFrom jsonlite fromJSON
+#' @import dplyr
+#' 
 #' @examples
-#' pull_rotten_data(all$id[1:5], "[key]", method = "internal", mode = "a")
+#' pull_rotten_data(all$id[1:5], "[key]")
 pull_rotten_data <- function(ids, key, ...) {
     data.frame(id = ids) %>%
     mutate(url = paste0("http://api.rottentomatoes.com/api/public/v1.0/movie_alias.json?id=", 
                         id, 
                         "&type=imdb&apikey=",
                         key)) %>%
-    mutate(i = batch_id) %>%
     rowwise() %>%
-    do(success = download.file(url = .$url, destfile = "json/tmp.json", ...) %>% Sys.sleep(1))
+    do(json = readLines(.$url, skipNul = TRUE)[nchar(readLines(.$url, skipNul = TRUE)) > 0], sleep = Sys.sleep(1)) %>% select(-sleep) -> res
+    
+    json <- "["
+    json <- paste0(json, do.call(paste, list(res$json, collapse=',')))
+    json <- paste0(json, "]")
+    
+    return(fromJSON(json))
 }
 
 #' Pull boxoffice data from IMDB corresponding to movies data from IMDB
